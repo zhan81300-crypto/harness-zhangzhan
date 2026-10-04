@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "harness-zhangzhan",
+  "description": "张展nb666-Harness：先把宏观战略定死再动手、真实判断成品好不好用、每轮对话实时归档成可复盘的记录。",
+  "owner": {
+    "name": "张展",
+    "email": "zhan81300@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "harness",
+      "description": "先把宏观战略定死再动手、真实判断成品好不好用、每轮对话实时归档成可复盘的记录。治 AI 边做边改、凑形式验收、前脚说完后脚忘。",
+      "author": {
+        "name": "张展"
+      },
+      "category": "workflow",
+      "source": "./",
+      "homepage": "https://github.com/zhan81300-crypto/harness-zhangzhan"
+    }
+  ]
+}

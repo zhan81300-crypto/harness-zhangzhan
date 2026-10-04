@@ -1,0 +1,15 @@
+{
+  "name": "harness",
+  "version": "2.0.0",
+  "description": "张展nb666-Harness：先把宏观战略定死再动手、真实判断成品好不好用、每轮对话实时归档成可复盘的记录。治 AI 边做边改、凑形式验收、前脚说完后脚忘。",
+  "keywords": [
+    "harness",
+    "workflow",
+    "strategy-first",
+    "chinese",
+    "review"
+  ],
+  "author": {
+    "name": "张展"
+  }
+}
