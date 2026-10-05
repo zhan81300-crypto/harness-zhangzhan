@@ -18,6 +18,12 @@ import sys
 import time
 from datetime import datetime
 
+try:
+    from 循环 import 读状态 as 读循环状态, 拼注入 as 拼循环注入
+except ImportError:
+    读循环状态 = lambda 目录: None
+    拼循环注入 = lambda 状态: ""
+
 # Windows 上 stdin/stdout 默认不是 UTF-8，路径里的中文会被搞坏。
 # 必须在读输入之前就掰过来。
 for _流 in (sys.stdin, sys.stdout, sys.stderr):
@@ -277,6 +283,10 @@ def 接话():
     if not 目录:
         return  # 本项目没启用，完全不打扰
 
+    循环提示 = 拼循环注入(读循环状态(目录))
+    if 循环提示:
+        print(循环提示)
+
     # 1. 先把原话按时间落下来，这一步是死的，漏不掉
     时刻 = datetime.now().strftime("%m-%d %H:%M")
     摘 = 原话 if len(原话) <= 120 else 原话[:120] + "…"
@@ -343,6 +353,10 @@ def 注入():
     if not 目录:
         return
     块 = [f"[张展nb666-Harness 已在本项目启用] {os.path.join(目录, '总纲.md')}（索引，link 到各分文件）"]
+    循环状态 = 读循环状态(目录)
+    循环提示 = 拼循环注入(循环状态)
+    if 循环提示:
+        块.append(循环提示)
     状态 = re.search(r"^状态[:：]\s*\**\s*([^\s（(*]+)", 读(os.path.join(目录, "战略步骤.md")), re.M)
     if 状态:
         块.append(f"战略步骤状态：{状态.group(1)}")
