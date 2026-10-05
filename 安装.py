@@ -17,6 +17,7 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 家 = os.path.join(os.path.expanduser("~"), ".claude")
 技能 = os.path.join(家, "skills", "harness")
 钩子目录 = os.path.join(家, "hooks", "harness")
+Mods目录 = os.path.join(家, "mods", "harness")
 配置 = os.path.join(家, "settings.json")
 
 入口 = (("UserPromptSubmit", None, "接话"),
@@ -71,6 +72,11 @@ def 装():
     shutil.rmtree(模板邻居, ignore_errors=True)
     shutil.copytree(os.path.join(包, "skills", "harness", "模板"), 模板邻居)
 
+    # Mods 体验层：交互会话里改系统提示词、归档上下文和状态显示
+    os.makedirs(Mods目录, exist_ok=True)
+    for 文件 in ("register.tsx", "欢迎.tsx", "hooks.json"):
+        shutil.copy2(os.path.join(包, "hooks", 文件), os.path.join(Mods目录, 文件))
+
     # 审查员
     os.makedirs(os.path.join(家, "agents"), exist_ok=True)
     shutil.copy2(os.path.join(包, "agents", "harness-审查员.md"),
@@ -91,6 +97,7 @@ def 装():
     print("装好了。")
     print(f"  技能   {技能}")
     print(f"  硬闸   {钩子目录}")
+    print(f"  Mods   {Mods目录}")
     print(f"  审查员 {os.path.join(家, 'agents', 'harness-审查员.md')}")
     print(f"  四道闸 已写进 {配置}（原文件备份成 settings.json.harness备份）")
     print()
@@ -101,6 +108,7 @@ def 装():
 def 卸():
     shutil.rmtree(技能, ignore_errors=True)
     shutil.rmtree(钩子目录, ignore_errors=True)
+    shutil.rmtree(Mods目录, ignore_errors=True)
     try:
         os.remove(os.path.join(家, "agents", "harness-审查员.md"))
     except Exception:
